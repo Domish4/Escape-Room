@@ -6,7 +6,7 @@ import { store } from '../../store';
 import { fetchInfoQuestBooking, fetchQuestsInfoAction } from '../../store/api-action';
 import {useEffect} from 'react';
 import ErrorPage from '../error-page/error-page';
-import { AppRoute, DifficultyLevel, Genres } from '../../constants/enums';
+import { AppRoute, DifficultyLevel, Genres, GenresDictionary, LevelDictionary } from '../../constants/enums';
 
 function QuestPage(): JSX.Element {
   const quest = useAppSelector((state) => state.quest);
@@ -44,7 +44,7 @@ function QuestPage(): JSX.Element {
           <div className="quest-page__content">
             <h1 className="title title--size-l title--uppercase quest-page__title">{title}</h1>
             <p className="subtitle quest-page__subtitle"><span className="visually-hidden">Жанр:</span>
-              {Genres[type as keyof typeof Genres]}
+              {GenresDictionary[type as Genres]}
             </p>
             <ul className="tags tags--size-l quest-page__tags">
               <li className="tags__item">
@@ -55,7 +55,7 @@ function QuestPage(): JSX.Element {
               <li className="tags__item">
                 <svg width="14" height="14" aria-hidden="true">
                   <use xlinkHref="#icon-level"></use>
-                </svg>{DifficultyLevel[level as keyof typeof DifficultyLevel]}
+                </svg>{LevelDictionary[level as DifficultyLevel]}
               </li>
             </ul>
             <p className="quest-page__description">{description}</p>

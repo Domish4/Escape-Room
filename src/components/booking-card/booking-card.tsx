@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, Date, DifficultyLevel, DateDictionary } from '../../constants/enums';
+import { AppRoute, Date, DifficultyLevel, DateDictionary, LevelDictionary } from '../../constants/enums';
 import { useAppDispatch } from '../../hooks';
 import { deleteBooking } from '../../store/api-action';
 import { BookingQuest } from '../../types/booking-quest';
@@ -40,7 +40,7 @@ function BookingCard({ bookingQuest }: BookingQuestCardProps): JSX.Element {
           <li className="tags__item">
             <svg width="14" height="14" aria-hidden="true">
               <use xlinkHref="#icon-level"></use>
-            </svg>{DifficultyLevel[bookingQuest.quest.level as keyof typeof DifficultyLevel]}
+            </svg>{LevelDictionary[bookingQuest.quest.level as DifficultyLevel]}
           </li>
         </ul>
         <button
