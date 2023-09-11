@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { QuestType } from '../../types/quest';
-import { AppRoute } from '../../const';
+import { AppRoute, DifficultyLevel, LevelDictionary } from '../../constants/enums';
 
 type QuestCardProps = {
     quest: QuestType;
@@ -30,7 +30,7 @@ function QuestCard({quest}: QuestCardProps): JSX.Element {
           <li className="tags__item">
             <svg width="14" height="14" aria-hidden="true">
               <use xlinkHref="#icon-level"></use>
-            </svg>{level}
+            </svg>{LevelDictionary[level as DifficultyLevel]}
           </li>
         </ul>
       </div>

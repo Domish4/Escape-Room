@@ -1,15 +1,21 @@
-import {Navigate} from 'react-router-dom';
-import { AuthorizationStatus } from '../../const';
+import {Navigate, useLocation} from 'react-router-dom';
+import { AuthorizationStatus } from '../../constants/enums';
+import { useAppSelector } from '../../hooks';
+import Loader from '../loader/loader';
 
 type PrivateRouteProps = {
   children: JSX.Element;
-  authorizationStatus: AuthorizationStatus;
 };
 
-function PrivateRoute({children, authorizationStatus}: PrivateRouteProps): JSX.Element {
-  const hasAccess = authorizationStatus;
+function PrivateRoute({children}: PrivateRouteProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const location = useLocation();
 
-  return hasAccess ? children : <Navigate to={'/login'} />;
+  if (authorizationStatus === AuthorizationStatus.Unknown) {
+    return <Loader />;
+  }
+
+  return authorizationStatus === AuthorizationStatus.Auth ? children : <Navigate to={'/login'} state={location} />;
 }
 
 export default PrivateRoute;

@@ -1,7 +1,8 @@
-import { Genres } from '../../const';
+import {GenresDictionary } from '../../constants/enums';
 import { useAppDispatch} from '../../hooks';
 import {useState} from 'react';
 import { changeGenres } from '../../store/action';
+import { ucFirst } from '../../utils/utils';
 function FilterItem(): JSX.Element {
   const dispatch = useAppDispatch();
   const [selectedValue, setSelectedValue] = useState('all-quests');
@@ -9,7 +10,7 @@ function FilterItem(): JSX.Element {
 
   return (
     <>
-      {Object.entries(Genres).map(([key, value]) => (
+      {Object.entries(GenresDictionary).map(([key, value]) => (
         <li className="filter__item" key={key}>
           <input
             type="radio"
@@ -18,12 +19,13 @@ function FilterItem(): JSX.Element {
             value={key}
             onChange={(e) => setSelectedValue(e.target.value)}
             checked={selectedValue === key}
-            onClick={() => dispatch(changeGenres(value))}
+            onClick={() => dispatch(changeGenres(key))}
           />
           <label className="filter__label" htmlFor={key}>
             <svg className="filter__icon" width="30" height="30" aria-hidden="true">
-              <use xlinkHref={`#icon-${key}`}></use>
-            </svg><span className="filter__label-text">{value}</span>
+              {/* поставлено такое условие, потому что type приходит с сервера как adventures а иконка отображается без s*/}
+              <use xlinkHref={`#icon-${key === 'adventures' ? 'adventure' : key}`}></use>
+            </svg><span className="filter__label-text">{ucFirst(value)}</span>
           </label>
         </li>
       ))}

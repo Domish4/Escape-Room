@@ -1,8 +1,8 @@
 export type InfoQuest = {
     id: string;
     location: {
-        adress: string;
-        coords: [number];
+        address: string;
+        coords: [number, number];
     };
     slots: {
         today: [
@@ -30,8 +30,8 @@ export type BookingQuest = {
     placeId: string;
     id: string;
     location: {
-        adress: string;
-        coords: [number];
+        address: string;
+        coords: [number, number];
     };
     quest: {
         id: string;
@@ -43,27 +43,24 @@ export type BookingQuest = {
         peopleMinMax: [number];
     };
 };
-
-
-export type BookingQuestwithnoplaceid = {
+export type BookingPostData = {
     date: string;
     time: string;
     contactPerson: string;
     phone: string;
     withChildren: boolean;
     peopleCount: number;
+    placeId: string;
+}
+
+export type BookingData = {
     id: string;
-    location: {
-        adress: string;
-        coords: [number];
-    };
-    quest: {
-        id: string;
-        title: string;
-        previewImg: string;
-        previewImgWebp: string;
-        level: string;
-        type: string;
-        peopleMinMax: [number];
-    };
-};
+    postData: BookingPostData;
+}
+
+export type BookingFormFields = {
+    name: string;
+    tel: string;
+    person: string;
+    children: boolean;
+  };

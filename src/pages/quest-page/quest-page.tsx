@@ -1,36 +1,38 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { useAppSelector } from '../../hooks';
 import { store } from '../../store';
-import { fetchQuestsInfoAction } from '../../store/api-action';
+import { fetchInfoQuestBooking, fetchQuestsInfoAction } from '../../store/api-action';
 import {useEffect} from 'react';
 import ErrorPage from '../error-page/error-page';
-import { DifficultyLevel } from '../../const';
+import { AppRoute, DifficultyLevel, Genres } from '../../constants/enums';
 
 function QuestPage(): JSX.Element {
   const quest = useAppSelector((state) => state.quest);
   const params = useParams();
-
+  const InfoOfQuestBook = useAppSelector((state) => state.InfoBookingQuest);
 
   useEffect(() => {
 
     if (params.id) {
       store.dispatch(fetchQuestsInfoAction({id: params.id}));
-
+      store.dispatch(fetchInfoQuestBooking({id: params.id}));
     }
   }, [params.id]);
 
 
-  if (!quest || !params.id) {
+  if (!quest || !params.id || !InfoOfQuestBook) {
     return <ErrorPage />;
   }
 
-  const {coverImg, coverImgWebp, title, type, level, description, peopleMinMax} = quest;
+
+  const {coverImg, coverImgWebp, title, type, level, description, peopleMinMax, id} = quest;
+
 
   return (
     <>
-      <Header />
+      <Header titlePath='/quest'/>
       <main className="decorated-page quest-page">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>
@@ -42,7 +44,7 @@ function QuestPage(): JSX.Element {
           <div className="quest-page__content">
             <h1 className="title title--size-l title--uppercase quest-page__title">{title}</h1>
             <p className="subtitle quest-page__subtitle"><span className="visually-hidden">Жанр:</span>
-              {type}
+              {Genres[type as keyof typeof Genres]}
             </p>
             <ul className="tags tags--size-l quest-page__tags">
               <li className="tags__item">
@@ -53,11 +55,11 @@ function QuestPage(): JSX.Element {
               <li className="tags__item">
                 <svg width="14" height="14" aria-hidden="true">
                   <use xlinkHref="#icon-level"></use>
-                </svg>{level === DifficultyLevel ? level : ''}
+                </svg>{DifficultyLevel[level as keyof typeof DifficultyLevel]}
               </li>
             </ul>
             <p className="quest-page__description">{description}</p>
-            <a className="btn btn--accent btn--cta quest-page__btn" href="booking.html">Забронировать</a>
+            <Link to={`${AppRoute.Quests}/${id}/booking`} className="btn btn--accent btn--cta quest-page__btn">Забронировать</Link>
           </div>
         </div>
       </main>

@@ -1,31 +1,49 @@
-import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../constants/enums';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
 
-function Header(): JSX.Element {
+type HeaderProps = {
+  titlePath: string;
+}
+
+function Header({titlePath}: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  //обновляет мейн страницу, для сброса filteredquest
+  const refreshPage = () => {
+    navigate('/');
+    navigate(0);
+  };
 
   return (
     <header className="header">
       <div className="container container--size-l">
-        <span className="logo header__logo">
-          <svg width="134" height="52" aria-hidden="true">
-            <use xlinkHref="#logo"></use>
-          </svg>
-        </span>
+        <Link to={AppRoute.Main}>
+          <span className="logo header__logo">
+            <svg width="134" height="52" aria-hidden="true">
+              <use xlinkHref="#logo"></use>
+            </svg>
+          </span>
+        </Link>
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <a className="link active" href="index.html">Квесты</a>
+              <Link onClick={() => refreshPage()} to={AppRoute.Main}
+                className={titlePath === AppRoute.Main ? 'link active' : 'link'}
+              >Квесты
+              </Link>
             </li>
             <li className="main-nav__item">
-              <a className="link" href="contacts.html">Контакты</a>
+              <Link to={AppRoute.Contacts} className={titlePath === AppRoute.Contacts ? 'link active' : 'link'}>Контакты
+              </Link>
             </li>
             {authorizationStatus === AuthorizationStatus.Auth ?
               <li className="main-nav__item">
-                <a className="link" href="my-quests.html">Мои бронирования</a>
+                <Link to={AppRoute.Reservation} className={titlePath === AppRoute.Reservation ? 'link active' : 'link'}>Мои бронирования
+                </Link>
               </li> : '' }
           </ul>
         </nav>

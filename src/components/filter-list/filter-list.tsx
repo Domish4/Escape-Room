@@ -1,4 +1,4 @@
-import FilterItem from '../filter-item/filter-item';
+import FilterItem from '../filter-item-level/filter-item-level';
 
 function FilterList(): JSX.Element {
   return (

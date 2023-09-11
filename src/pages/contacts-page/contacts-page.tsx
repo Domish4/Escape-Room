@@ -1,10 +1,12 @@
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import MapContacts from '../../components/map/contacts-map';
 
 function ContactsPage(): JSX.Element {
+
   return (
     <>
-      <Header />
+      <Header titlePath='/contacts'/>
       <main className="page-content decorated-page">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>
@@ -23,7 +25,7 @@ function ContactsPage(): JSX.Element {
               <div className="contacts__item">
                 <dt className="contacts__dt">Адрес</dt>
                 <dd className="contacts__dd">
-                  <address className="contacts__address">Санкт-Петербург, <br>Набережная реки Карповка, д 5П</br> </address>
+                  <address className="contacts__address">Санкт-Петербург, <br />Набережная реки Карповка, д 5П </address>
                 </dd>
               </div>
               <div className="contacts__item">
@@ -45,7 +47,9 @@ function ContactsPage(): JSX.Element {
             </dl>
             <div className="contacts__map">
               <div className="map">
-                <div className="map__container"></div>
+                <div className="map__container">
+                  <MapContacts />
+                </div>
               </div>
             </div>
           </div>

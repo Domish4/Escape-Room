@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { AuthorizationStatus } from '../const';
-import { BookingQuest, InfoQuest } from '../types/booking-quest';
+import { AuthorizationStatus } from '../constants/enums';
+import { BookingPostData, BookingQuest, InfoQuest} from '../types/booking-quest';
 import { QuestType } from '../types/quest';
 import { UserData } from '../types/user-data';
-import { changeDifficalty, changeGenres, getInfoOfBookingQuest, getInfoOfQuest, getUserInfoOfBooking, loadQuests, postBooking, requireAuthorization, setError, setQuestsDataLoading } from './action';
+import { changeCurrentPlace, changeDifficalty, changeGenres, getInfoOfBookingQuest, getInfoOfQuest, getUserInfoOfBooking, loadQuests, postBooking, requireAuthorization, setError, setQuestsDataLoading } from './action';
 
 
 type InitialState = {
@@ -14,24 +14,26 @@ type InitialState = {
     userData: UserData | null;
     quests: QuestType[];
     quest: QuestType | null;
-    InfoBookingQuest: InfoQuest | null;
-    postBooking: BookingQuest | null;
+    InfoBookingQuest: InfoQuest[];
+    SingleInfoBook: InfoQuest | null;
+    postBooking: BookingPostData | null;
     userBookInfo: BookingQuest[];
     error: string | null;
 }
 
 const initialState: InitialState = {
-  genres: 'Все квесты',
+  genres: 'all-quests',
   difficult: 'any',
   isDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: null,
   quests: [],
   quest: null,
-  InfoBookingQuest: null,
+  InfoBookingQuest: [],
+  SingleInfoBook: null,
   postBooking: null,
   userBookInfo: [],
-  error: null
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -54,8 +56,12 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(getInfoOfQuest, (state, action) => {
       state.quest = action.payload;
     })
+    .addCase(changeCurrentPlace, (state, action) => {
+      state.SingleInfoBook = action.payload;
+    })
     .addCase(getInfoOfBookingQuest, (state, action) => {
       state.InfoBookingQuest = action.payload;
+      state.SingleInfoBook = action.payload[0];
     })
     .addCase(postBooking, (state, action) => {
       state.postBooking = action.payload;
