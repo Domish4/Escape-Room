@@ -1,4 +1,4 @@
-import BookingForm from '../../components/booking-form/booking-form';
+import BookingForm from '../../components/booking/booking-form/booking-form';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import MapBooking from '../../components/map/booking-map';

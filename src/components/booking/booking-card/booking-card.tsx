@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, Date, DifficultyLevel, DateDictionary, LevelDictionary } from '../../constants/enums';
-import { useAppDispatch } from '../../hooks';
-import { deleteBooking } from '../../store/api-action';
-import { BookingQuest } from '../../types/booking-quest';
+import { AppRoute, Date, DifficultyLevel, DateDictionary, LevelDictionary } from '../../../constants/enums';
+import { useAppDispatch } from '../../../hooks';
+import { deleteBooking } from '../../../store/api-action';
+import { BookingQuest } from '../../../types/booking-quest';
 
 
 type BookingQuestCardProps = {

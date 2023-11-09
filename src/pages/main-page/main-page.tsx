@@ -1,6 +1,6 @@
 import CardsGrid from '../../components/cards-grid/cards-grid';
 import Footer from '../../components/footer/footer';
-import FormFilter from '../../components/form-filter/form-filter';
+import FormFilter from '../../components/filter/form-filter/form-filter';
 import Header from '../../components/header/header';
 import {useAppSelector } from '../../hooks';
 

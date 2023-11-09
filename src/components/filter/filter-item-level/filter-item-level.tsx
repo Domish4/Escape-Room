@@ -1,9 +1,9 @@
-import {GenresDictionary } from '../../constants/enums';
-import { useAppDispatch} from '../../hooks';
+import {GenresDictionary } from '../../../constants/enums';
+import { useAppDispatch} from '../../../hooks';
 import {useState} from 'react';
-import { changeGenres } from '../../store/action';
-import { ucFirst } from '../../utils/utils';
-function FilterItem(): JSX.Element {
+import { changeGenres } from '../../../store/action';
+import { ucFirst } from '../../../utils/utils';
+function FilterItemLevel(): JSX.Element {
   const dispatch = useAppDispatch();
   const [selectedValue, setSelectedValue] = useState('all-quests');
 
@@ -33,4 +33,4 @@ function FilterItem(): JSX.Element {
   );
 }
 
-export default FilterItem;
+export default FilterItemLevel;

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants/enums';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
@@ -10,13 +10,6 @@ type HeaderProps = {
 function Header({titlePath}: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  //обновляет мейн страницу, для сброса filteredquest
-  const refreshPage = () => {
-    navigate('/');
-    navigate(0);
-  };
 
   return (
     <header className="header">

@@ -1,12 +1,12 @@
-import { AppRoute, Date } from '../../constants/enums';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { postBookingAction } from '../../store/api-action';
-import { BookingData, BookingFormFields, BookingPostData, } from '../../types/booking-quest';
+import { AppRoute, Date } from '../../../constants/enums';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { postBookingAction } from '../../../store/api-action';
+import { BookingData, BookingFormFields, BookingPostData, } from '../../../types/booking-quest';
 import BookingFormDate from '../booking-form-date/booking-form-date';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {useState, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../loader/loader';
+import Loader from '../../loader/loader';
 
 function BookingForm(): JSX.Element {
 

@@ -7,6 +7,7 @@ import { fetchInfoQuestBooking, fetchQuestsInfoAction } from '../../store/api-ac
 import {useEffect} from 'react';
 import ErrorPage from '../error-page/error-page';
 import { AppRoute, DifficultyLevel, Genres, GenresDictionary, LevelDictionary } from '../../constants/enums';
+import Loader from '../../components/loader/loader';
 
 function QuestPage(): JSX.Element {
   const quest = useAppSelector((state) => state.quest);
@@ -23,7 +24,7 @@ function QuestPage(): JSX.Element {
 
 
   if (!quest || !params.id || !InfoOfQuestBook) {
-    return <ErrorPage />;
+    return <Loader />;
   }
 
 

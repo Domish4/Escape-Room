@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../hooks';
-import ErrorPage from '../../pages/error-page/error-page';
-import {Date, DateDictionary } from '../../constants/enums';
+import { useAppSelector } from '../../../hooks';
+import ErrorPage from '../../../pages/error-page/error-page';
+import {Date, DateDictionary } from '../../../constants/enums';
 
 type BookingProps = {
   onDateChange: (date: Date, time: string) => void;

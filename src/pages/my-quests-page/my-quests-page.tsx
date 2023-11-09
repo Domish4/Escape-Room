@@ -1,4 +1,4 @@
-import BookingList from '../../components/booking-list/booking-list';
+import BookingList from '../../components/booking/booking-list/booking-list';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { useAppDispatch} from '../../hooks';

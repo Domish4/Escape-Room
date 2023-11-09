@@ -1,7 +1,7 @@
-import { LevelDictionary } from '../../constants/enums';
-import { useAppDispatch } from '../../hooks';
+import { LevelDictionary } from '../../../constants/enums';
+import { useAppDispatch } from '../../../hooks';
 import {useState} from 'react';
-import { changeDifficalty } from '../../store/action';
+import { changeDifficalty } from '../../../store/action';
 
 function FilterItemDifficulty(): JSX.Element {
   const dispatch = useAppDispatch();

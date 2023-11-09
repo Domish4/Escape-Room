@@ -1,5 +1,5 @@
 import FilterListDifficulty from '../filter-list-difficulty/filter-list-difficulty';
-import FilterList from '../filter-list/filter-list';
+import FilterListLevel from '../filter-list-level/filter-list-level';
 
 function FormFilter(): JSX.Element {
 
@@ -7,7 +7,7 @@ function FormFilter(): JSX.Element {
     <form className="filter" action="#" method="get">
       <fieldset className="filter__section">
         <legend className="visually-hidden">Тематика</legend>
-        <FilterList />
+        <FilterListLevel />
       </fieldset>
       <fieldset className="filter__section">
         <legend className="visually-hidden">Сложность</legend>

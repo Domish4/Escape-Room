@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../../hooks';
 import BookingCard from '../booking-card/booking-card';
 
 
