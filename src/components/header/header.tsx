@@ -24,7 +24,7 @@ function Header({titlePath}: HeaderProps): JSX.Element {
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <Link onClick={() => refreshPage()} to={AppRoute.Main}
+              <Link to={AppRoute.Main}
                 className={titlePath === AppRoute.Main ? 'link active' : 'link'}
               >Квесты
               </Link>

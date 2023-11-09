@@ -5,7 +5,6 @@ import { useAppSelector } from '../../hooks';
 import { store } from '../../store';
 import { fetchInfoQuestBooking, fetchQuestsInfoAction } from '../../store/api-action';
 import {useEffect} from 'react';
-import ErrorPage from '../error-page/error-page';
 import { AppRoute, DifficultyLevel, Genres, GenresDictionary, LevelDictionary } from '../../constants/enums';
 import Loader from '../../components/loader/loader';
 
