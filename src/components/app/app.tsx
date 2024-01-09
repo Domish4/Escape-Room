@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import BookingPage from '../../pages/booking-page/booking-page';
@@ -8,9 +8,17 @@ import QuestPage from '../../pages/quest-page/quest-page';
 import PrivateRoute from '../private-route/private-route';
 import ErrorPage from '../../pages/error-page/error-page';
 import { HelmetProvider } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 
 function App(): JSX.Element {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location]);
+
   return (
     <HelmetProvider>
       <Routes>

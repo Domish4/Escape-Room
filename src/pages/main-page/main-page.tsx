@@ -5,13 +5,15 @@ import Header from '../../components/header/header';
 import {useAppSelector } from '../../hooks';
 
 import sortCard from '../../utils/utils';
+import { useMemo } from 'react';
 
 
 function MainPage(): JSX.Element {
   const quests = useAppSelector((state) => state.quests);
   const currentGenre = useAppSelector((state) => state.genres);
   const currentLevel = useAppSelector((state) => state.difficult);
-  const filteredQuests = sortCard(quests, currentGenre, currentLevel);
+  const filteredQuests = useMemo(() =>
+    sortCard(quests, currentGenre, currentLevel), [quests, currentGenre, currentLevel]);
 
   return (
     <>
